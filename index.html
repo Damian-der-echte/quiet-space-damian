@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuietSpace Prototyp</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Direkt zum Hauptinhalt</a>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+          <button class="close-menu" id="closeMenu" aria-label="Menü schliessen">×</button>
+          <a class="brand" href="#start" data-route="start" aria-label="Zur Startseite">
+            <strong>QuietSpace</strong>
+          </a>
+        </div>
+
+        <nav class="main-nav" aria-label="Hauptnavigation">
+          <button class="nav-item active" data-route="start"><span>Startseite</span></button>
+          <button class="nav-item" data-route="rules"><span>Regeln</span></button>
+          <button class="nav-item" data-route="booking">
+            <span class="student-label">Buchen</span>
+            <span class="teacher-label">Buchen Lehrpersonen</span>
+          </button>
+          <button class="nav-item" data-route="reservations"><span>Reservationen</span></button>
+          <button class="nav-item teacher-only" data-route="students"><span>Schüleransicht</span></button>
+          <button class="nav-item" data-route="map"><span>Lageplan</span></button>
+          <button class="nav-item" data-route="help"><span>Hilfe</span></button>
+        </nav>
+      </aside>
+
+      <div class="page-shell">
+        <header class="topbar">
+          <button class="menu-toggle" id="openMenu" aria-label="Menü öffnen">☰</button>
+          <span class="logo-link">QuietSpace</span>
+          <p class="topbar-claim">Lernen. In Ruhe. Gemeinsam.</p>
+          <label class="role-select-label">
+            <span class="sr-only">Ansicht wechseln</span>
+            <select id="roleSelect" aria-label="Ansicht wechseln">
+              <option value="student">Lernendenansicht</option>
+              <option value="teacher">Lehreransicht</option>
+            </select>
+          </label>
+        </header>
+
+        <main id="app" tabindex="-1"></main>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog class="modal" id="ruleTestDialog" aria-labelledby="ruleTestTitle" aria-describedby="ruleTestDescription">
+      <form method="dialog" class="modal-panel" id="ruleTestForm">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Freischaltung</p>
+            <h2 id="ruleTestTitle">Regeltest</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Schliessen">×</button>
+        </div>
+        <p class="muted" id="ruleTestDescription">Drei Fragen, vier Punkte. Für das Bestehen brauchst du mindestens 3 von 4 Punkten.</p>
+        <div class="quiz-list"></div>
+        <div class="modal-actions">
+          <button class="secondary" value="cancel">Abbrechen</button>
+          <button class="primary" id="submitRuleTest" type="button">Weiter</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="noteDialog" aria-labelledby="noteTitle">
+      <form method="dialog" class="modal-panel">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Schülerrechte</p>
+            <h2 id="noteTitle">Notiz erfassen</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Schliessen">×</button>
+        </div>
+        <label class="field">
+          <span>Begründung</span>
+          <textarea id="rightsNote" rows="5">Verwarnung wegen verpasster Reservation überprüft.</textarea>
+        </label>
+        <div class="modal-actions">
+          <button class="secondary" value="cancel">Abbrechen</button>
+          <button class="primary" id="confirmRights" value="default">Bestätigen</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
